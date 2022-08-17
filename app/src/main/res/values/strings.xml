@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MoviesClub</string>
+    <string name="arrow_back_icon">Arrow Back</string>
+    <string name="search">Search…</string>
+    <string name="profile_icon">Profile</string>
+    <string name="filter_icon">Filter</string>
+    <string name="movie_image">Movie Image</string>
+    <string name="favorite_icon">Favorite</string>
+    <string name="actors">Actors:</string>
+    <string name="writers">Writers:</string>
+    <string name="director">Director:</string>
+    <string name="rating_star_icon">Rating Star</string>
+    <string name="rating_out_of_10">/10</string>
+    <string name="bg_profile_image">Background Profile Image</string>
+</resources>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_item_cv"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:layout_margin="6dp"
+    android:elevation="10dp"
+    app:cardCornerRadius="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/movie_item_image"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/movie_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/movie_item_title_and_year_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:maxWidth="160dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/movie_item_rating_tv"
+            app:layout_constraintStart_toEndOf="@id/movie_item_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/movie_item_director_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/director"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/movie_item_image"
+            app:layout_constraintTop_toBottomOf="@id/movie_item_title_and_year_tv" />
+
+        <TextView
+            android:id="@+id/movie_item_directors_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="10dp"
+            android:maxWidth="160dp"
+            app:layout_constraintStart_toEndOf="@id/movie_item_director_tv"
+            app:layout_constraintTop_toBottomOf="@id/movie_item_title_and_year_tv" />
+
+        <TextView
+            android:id="@+id/movie_item_actors_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/actors"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/movie_item_image"
+            app:layout_constraintTop_toBottomOf="@id/movie_item_director_tv" />
+
+        <TextView
+            android:id="@+id/movie_item_actors_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="10dp"
+            android:maxWidth="160dp"
+            android:singleLine="false"
+            app:layout_constraintStart_toEndOf="@id/movie_item_actors_tv"
+            app:layout_constraintTop_toBottomOf="@id/movie_item_directors_content" />
+
+        <TextView
+            android:id="@+id/movie_item_rating_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="2dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/movie_item_rating_icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/movie_item_rating_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/rating_star_icon"
+            android:src="@drawable/ic_star_rate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
