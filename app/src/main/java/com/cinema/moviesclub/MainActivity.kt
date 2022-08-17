@@ -1,4 +1,4 @@
-package com.cinema.moviesclub.ui
+package com.cinema.moviesclub
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
