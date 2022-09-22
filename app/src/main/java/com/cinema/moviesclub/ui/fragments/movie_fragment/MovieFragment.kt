@@ -21,7 +21,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
 
     private var _fragmentMovieBinding: FragmentMovieBinding? = null
     private val fragmentMovieBinding
-        get() = _fragmentMovieBinding
+        get() = _fragmentMovieBinding!!
 
     private val movieViewModel: MovieViewModel by viewModels()
     private val args by navArgs<MovieFragmentArgs>()
@@ -30,9 +30,9 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _fragmentMovieBinding = FragmentMovieBinding.inflate(inflater, container, false)
-        val view = fragmentMovieBinding?.root
+        val view = fragmentMovieBinding.root
 
         movieViewModel.getMovie(args.movieId)
 
@@ -44,26 +44,34 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
                 val movieRuntime = movieFragmentState.movie.runtime + " min"
 
                 context?.let { context ->
-                    fragmentMovieBinding?.movieImageIv?.let { imageView ->
+                    fragmentMovieBinding.movieImageIv.let { imageView ->
                         Glide.with(context).load(movieFragmentState.movie.image).apply(
                             RequestOptions().centerCrop().placeholder(R.drawable.progress_animation)
                         ).into(imageView)
 
-                        fragmentMovieBinding?.movieTitleAndYearTv?.text = movieTitleAndYear
-                        fragmentMovieBinding?.movieGenre?.text =
+                        fragmentMovieBinding.movieTitleAndYearTv.text = movieTitleAndYear
+                        fragmentMovieBinding.movieGenre.text =
                             movieFragmentState.movie.genre.replace(",", "")
-                        fragmentMovieBinding?.movieRatingTv?.text = movieFragmentState.movie.imdbRating
-                        fragmentMovieBinding?.movieDirectorsContent?.text =
+                        fragmentMovieBinding.movieRatingTv.text =
+                            movieFragmentState.movie.imdbRating
+                        fragmentMovieBinding.movieDirectorsContent.text =
                             movieFragmentState.movie.director
-                        fragmentMovieBinding?.movieWritersContent?.text = movieFragmentState.movie.writer
-                        fragmentMovieBinding?.movieActorsContent?.text = movieFragmentState.movie.actors
-                        fragmentMovieBinding?.moviePlotTv?.text = movieFragmentState.movie.plot
-                        fragmentMovieBinding?.movieRuntimeTv?.text = movieRuntime
-                        fragmentMovieBinding?.ratingIcon?.visibility = View.VISIBLE
+                        fragmentMovieBinding.movieWritersContent.text =
+                            movieFragmentState.movie.writer
+                        fragmentMovieBinding.movieActorsContent.text =
+                            movieFragmentState.movie.actors
+                        fragmentMovieBinding.moviePlotTv.text = movieFragmentState.movie.plot
+                        fragmentMovieBinding.movieRuntimeTv.text = movieRuntime
+                        fragmentMovieBinding.ratingIcon.visibility = View.VISIBLE
                     }
                 }
             }
         }
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _fragmentMovieBinding = null
     }
 }

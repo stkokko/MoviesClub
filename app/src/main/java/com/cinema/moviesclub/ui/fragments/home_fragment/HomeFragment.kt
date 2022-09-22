@@ -1,15 +1,12 @@
 package com.cinema.moviesclub.ui.fragments.home_fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cinema.moviesclub.R
 import com.cinema.moviesclub.databinding.FragmentHomeBinding
@@ -25,7 +22,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private var _fragmentHomeBinding: FragmentHomeBinding? = null
     private val fragmentHomeBinding
-        get() = _fragmentHomeBinding
+        get() = _fragmentHomeBinding!!
 
     private val homeViewModel: HomeViewModel by viewModels()
 
@@ -37,17 +34,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = fragmentHomeBinding?.root
+        val view = fragmentHomeBinding.root
 
         filters = listOf(Filter("Top Rated", true), Filter("Oscar Awarded"), Filter("Emmy Awarded"))
 
-
-        if (view != null) {
-            setFiltersRVA(view)
-            setMoviesRVA("Top Rated", view)
-        }
+        setFiltersRVA(view)
+        setMoviesRVA("Top Rated", view)
 
         return view
     }
@@ -61,8 +55,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             emmyAwardedMovies = { homeViewModel.handleRequestGetEmmyAwardedMovies() },
             updateMoviesRVA = { filter -> setMoviesRVA(filter, view) }
         )
-        fragmentHomeBinding?.filtersRv?.setHasFixedSize(true)
-        fragmentHomeBinding?.filtersRv?.adapter = filtersRVA
+        fragmentHomeBinding.filtersRv.setHasFixedSize(true)
+        fragmentHomeBinding.filtersRv.adapter = filtersRVA
     }
 
     private fun setMoviesRVA(filter: String, view: View) {
@@ -72,18 +66,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     homeViewModel.stateFlow.collectLatest { homeFragmentStateFlow ->
 
                         if (homeFragmentStateFlow.isLoading) {
-                            fragmentHomeBinding?.moviesRv?.visibility = View.INVISIBLE
-                            fragmentHomeBinding?.pbBgLayout?.visibility = View.VISIBLE
+                            fragmentHomeBinding.moviesRv.visibility = View.INVISIBLE
+                            fragmentHomeBinding.pbBgLayout.visibility = View.VISIBLE
                         } else {
-                            fragmentHomeBinding?.moviesRv?.visibility = View.VISIBLE
-                            fragmentHomeBinding?.pbBgLayout?.visibility = View.INVISIBLE
+                            fragmentHomeBinding.moviesRv.visibility = View.VISIBLE
+                            fragmentHomeBinding.pbBgLayout.visibility = View.INVISIBLE
 
                             moviesRVA = MoviesRVA(homeFragmentStateFlow.topRatedMovies, view)
 
-                            fragmentHomeBinding?.moviesRv?.setHasFixedSize(true)
-                            fragmentHomeBinding?.moviesRv?.layoutManager =
+                            fragmentHomeBinding.moviesRv.setHasFixedSize(true)
+                            fragmentHomeBinding.moviesRv.layoutManager =
                                 LinearLayoutManager(context)
-                            fragmentHomeBinding?.moviesRv?.adapter = moviesRVA
+                            fragmentHomeBinding.moviesRv.adapter = moviesRVA
                         }
                     }
                 }
@@ -93,18 +87,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     homeViewModel.stateFlow.collectLatest { homeFragmentStateFlow ->
 
                         if (homeFragmentStateFlow.isLoading) {
-                            fragmentHomeBinding?.moviesRv?.visibility = View.INVISIBLE
-                            fragmentHomeBinding?.pbBgLayout?.visibility = View.VISIBLE
+                            fragmentHomeBinding.moviesRv.visibility = View.INVISIBLE
+                            fragmentHomeBinding.pbBgLayout.visibility = View.VISIBLE
                         } else {
-                            fragmentHomeBinding?.moviesRv?.visibility = View.VISIBLE
-                            fragmentHomeBinding?.pbBgLayout?.visibility = View.INVISIBLE
+                            fragmentHomeBinding.moviesRv.visibility = View.VISIBLE
+                            fragmentHomeBinding.pbBgLayout.visibility = View.INVISIBLE
 
                             moviesRVA = MoviesRVA(homeFragmentStateFlow.oscarAwardedMovies, view)
 
-                            fragmentHomeBinding?.moviesRv?.setHasFixedSize(true)
-                            fragmentHomeBinding?.moviesRv?.layoutManager =
+                            fragmentHomeBinding.moviesRv.setHasFixedSize(true)
+                            fragmentHomeBinding.moviesRv.layoutManager =
                                 LinearLayoutManager(context)
-                            fragmentHomeBinding?.moviesRv?.adapter = moviesRVA
+                            fragmentHomeBinding.moviesRv.adapter = moviesRVA
                         }
                     }
                 }
@@ -114,18 +108,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     homeViewModel.stateFlow.collectLatest { homeFragmentStateFlow ->
 
                         if (homeFragmentStateFlow.isLoading) {
-                            fragmentHomeBinding?.moviesRv?.visibility = View.INVISIBLE
-                            fragmentHomeBinding?.pbBgLayout?.visibility = View.VISIBLE
+                            fragmentHomeBinding.moviesRv.visibility = View.INVISIBLE
+                            fragmentHomeBinding.pbBgLayout.visibility = View.VISIBLE
                         } else {
-                            fragmentHomeBinding?.moviesRv?.visibility = View.VISIBLE
-                            fragmentHomeBinding?.pbBgLayout?.visibility = View.INVISIBLE
+                            fragmentHomeBinding.moviesRv.visibility = View.VISIBLE
+                            fragmentHomeBinding.pbBgLayout.visibility = View.INVISIBLE
 
                             moviesRVA = MoviesRVA(homeFragmentStateFlow.emmyAwardedMovies, view)
 
-                            fragmentHomeBinding?.moviesRv?.setHasFixedSize(true)
-                            fragmentHomeBinding?.moviesRv?.layoutManager =
+                            fragmentHomeBinding.moviesRv.setHasFixedSize(true)
+                            fragmentHomeBinding.moviesRv.layoutManager =
                                 LinearLayoutManager(context)
-                            fragmentHomeBinding?.moviesRv?.adapter = moviesRVA
+                            fragmentHomeBinding.moviesRv.adapter = moviesRVA
                         }
                     }
                 }
